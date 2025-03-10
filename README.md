@@ -1,20 +1,44 @@
 # Servo Angle Controller
 
-Arduino-based servo controller with smooth motion and serial interface.
+Arduino-based multi-servo controller featuring smooth motion, interactive demo modes, and serial interface control.
 
 ## Hardware Setup
 - Arduino board
-- Servo motor connected to:
-  - Pin 9 (signal)
+- 3 Servo motors connected to:
+  - Servo 1: Pin 9 (signal)
+  - Servo 2: Pin 10 (signal)
+  - Servo 3: Pin 11 (signal)
   - 5V (power)
   - GND (ground)
+
+## Features
+- Controls 3 synchronized servo motors
+- Smooth motion with easing functions
+- Constrained angle range: 60° to 120°
+- Interactive demo modes with dynamic patterns
+- Real-time serial control interface
+
+### Demo Modes
+- Coordinated sequence mode
+  - Synchronized wave-like motion
+  - Variable speed patterns
+  - Automatic mode switching
+- Random movement mode
+  - Individual servo speed control
+  - Dynamic speed variations (Slow/Fast/Super Fast)
+  - Random offset patterns
 
 ## Usage
 1. Upload code to Arduino
 2. Open Serial Monitor at 9600 baud with "Newline" ending
+3. System starts in demo mode by default
 
 ### Commands
-- Single angle: Enter number between 60-120
+- Demo mode: Enter 'd' to start demo
+  ```
+  d
+  ```
+- Single angle: Enter number between 60-120 (moves all servos)
   ```
   90
   ```
@@ -22,13 +46,18 @@ Arduino-based servo controller with smooth motion and serial interface.
   ```
   60,90,120
   ```
+- Exit demo mode: Send any character while demo is running
 
-### Features
-- Angle range: 60° to 120°
-- Smooth acceleration/deceleration
-- 200ms movement duration
-- Input validation with error messages
+### Operation Notes
+- All servos start at center position (90°)
+- Smooth motion with 200ms movement duration
+- Invalid angles will be reported in Serial Monitor
+- Demo modes automatically alternate between coordinated and random patterns
+- Speed variations in demo mode provide dynamic visual effects
 
-## Notes
-- Servo starts at center position (90°)
-- Invalid angles will be reported in Serial Monitor 
+## Technical Details
+- Servo angle constraints: 60° to 120°
+- Movement duration: 200ms per transition
+- Easing function for smooth acceleration/deceleration
+- Real-time serial monitoring and feedback
+- Multiple demo patterns with automatic transitions 
